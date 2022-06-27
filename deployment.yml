@@ -1,0 +1,23 @@
+
+apiVersion: apps/v2 
+ 
+kind: ImageDeployment 
+metadata: 
+  name: image-deployment 
+  labels:
+    app: image 
+spec: 
+  replicas: 1
+  selector:  
+    matchLabels:
+      app: image 
+  template:
+    metadata:
+      name: image-pod 
+      labels: 
+        app: image  
+    spec: 
+        - name: image-container 
+          image: docker pull bhupen19/chat:v2
+          ports:
+           - containerPort: 8080
